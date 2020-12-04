@@ -7,7 +7,7 @@ requirements = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}
 passport_fields = []
 passport_data = []
 
-hcl_pattern = r'([a-f]|[0-9])+'
+hcl_pattern = r'#([a-f]|[0-9]){6}'
 eye_colors = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
 
 valid_count = 0
@@ -15,15 +15,15 @@ valid_count = 0
 
 def check_data_validity(passport: dict) -> bool:
     byr = passport['byr']
-    if not (byr.isdigit() and len(byr) == 4 and 1920 <= int(byr) <= 2002):
+    if not (byr.isdigit() and 1920 <= int(byr) <= 2002):
         return False
 
     iyr = passport['iyr']
-    if not (iyr.isdigit() and len(iyr) == 4 and 2010 <= int(iyr) <= 2020):
+    if not (iyr.isdigit() and 2010 <= int(iyr) <= 2020):
         return False
 
     eyr = passport['eyr']
-    if not (eyr.isdigit() and len(eyr) == 4 and 2020 <= int(eyr) <= 2030):
+    if not (eyr.isdigit() and 2020 <= int(eyr) <= 2030):
         return False
 
     hgt = passport['hgt']
@@ -36,8 +36,7 @@ def check_data_validity(passport: dict) -> bool:
         return False
 
     hcl = passport['hcl']
-    code = hcl[1:]
-    if hcl[0] != '#' or len(code) != 6 or not re.match(hcl_pattern, code):
+    if not re.match(hcl_pattern, hcl):
         return False
 
     if passport['ecl'] not in eye_colors:
