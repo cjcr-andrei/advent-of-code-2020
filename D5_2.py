@@ -42,7 +42,6 @@ def update_bounds(half, lower_bound, upper_bound):
 freqs = defaultdict(lambda: 0)
 
 seat_ids = [i for i in map(get_seat_id, boarding_passes)]
-seat_ids.sort()
 
 for sid in seat_ids:
     freqs[sid] += 1
