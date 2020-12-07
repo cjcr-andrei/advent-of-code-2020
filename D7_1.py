@@ -1,4 +1,4 @@
-from collections import defaultdict, deque
+from collections import defaultdict
 
 with open('D7_in.txt') as f:
     lines = [line.strip() for line in f.readlines()]
