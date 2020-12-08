@@ -6,12 +6,12 @@ with open('D7_in.txt') as f:
 rules = defaultdict(lambda: [])
 
 
-def memoize(f):
+def memoize(func):
     memo = {}
 
     def helper(x):
         if x not in memo:
-            memo[x] = f(x)
+            memo[x] = func(x)
         return memo[x]
     return helper
 
