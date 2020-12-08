@@ -15,7 +15,7 @@ def parse_line(line: str):
     return command, argument
 
 
-def compute():
+def compute_acc():
     times_visited = defaultdict(lambda: 0)
     index = 0
     acc = 0
@@ -35,16 +35,16 @@ def compute():
 
 for index in range(len(lines)):
     command, argument = parse_line(lines[index])
-    old_command = f'{command} {argument}'
+    original_command = f'{command} {argument}'
     if command == 'nop':
         lines[index] = f'jmp {argument}'
     elif command == 'jmp':
         lines[index] = f'nop {argument}'
 
-    acc, flag = compute()
+    acc, flag = compute_acc()
 
     if not flag:
-        lines[index] = old_command
+        lines[index] = original_command
     else:
         print(acc)
         break
