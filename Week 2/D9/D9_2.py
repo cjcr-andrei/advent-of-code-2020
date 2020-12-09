@@ -10,7 +10,6 @@ while window_size > 0:
     while idx + window_size < len(lines):
         sub_array = lines[idx:idx + window_size]
         if sum(sub_array) == target:
-            print(sub_array)
             print(max(sub_array) + min(sub_array))
             quit()
         idx += 1
